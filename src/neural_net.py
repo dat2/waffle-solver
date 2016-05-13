@@ -27,10 +27,15 @@ class NeuralNet:
 
         return result
 
+    def update_weight(self, layer, row, column, number):
+        self.layers[layer][row][column] += number
+
+    def get_weight(self, layer, row, column):
+        return self.layers[layer][row][column]
+
     def update_random_weight(self, number):
         layer_i = np.random.randint(0, len(self.layers))
         rows, columns = len(self.layers[layer_i]), len(self.layers[layer_i][0])
         row_i, col_i = np.random.randint(0, rows), np.random.randint(0, columns)
-
-        self.layers[layer_i][row_i][col_i] += number
+        self.update_weight(layer_i, row_i, col_i, number)
 
