@@ -3,8 +3,6 @@ from scipy.special import expit
 
 sigmoid = expit
 
-np.random.seed(42)
-
 # fixed topology
 class NeuralNet:
     def __init__(self, n_input, m_output, hidden_layers):
@@ -29,4 +27,10 @@ class NeuralNet:
 
         return result
 
-net = NeuralNet(3, 2, [])
+    def update_random_weight(self, number):
+        layer_i = np.random.randint(0, len(self.layers))
+        rows, columns = len(self.layers[layer_i]), len(self.layers[layer_i][0])
+        row_i, col_i = np.random.randint(0, rows), np.random.randint(0, columns)
+
+        self.layers[layer_i][row_i][col_i] += number
+
